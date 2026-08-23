@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 96%;
+    --foreground: 30 15% 20%;
+
+    --card: 39 40% 94%;
+    --card-foreground: 30 15% 20%;
+
+    --popover: 40 33% 96%;
+    --popover-foreground: 30 15% 20%;
+
+    --primary: 11 65% 25%;
+    --primary-foreground: 40 33% 96%;
+
+    --secondary: 35 30% 88%;
+    --secondary-foreground: 30 15% 25%;
+
+    --muted: 36 25% 90%;
+    --muted-foreground: 30 10% 50%;
+
+    --accent: 11 70% 30%;
+    --accent-foreground: 40 33% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 36 30% 85%;
+    --input: 36 30% 85%;
+    --ring: 38 60% 55%;
+
+    --radius: 0.5rem;
+
+    --gold: 11 65% 25%;
+    --gold-light: 11 50% 40%;
+    --gold-dark: 11 70% 20%;
+    --champagne: 35 40% 82%;
+    --ivory: 40 40% 97%;
+    --cream: 39 35% 93%;
+    --cream-dark: 36 25% 85%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Cormorant Garamond", serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", serif;
+  }
+  .font-urdu {
+    font-family: "Noto Nastaliq Urdu", serif;
+    direction: rtl;
+    line-height: 2.2;
+  }
+  .font-display {
+    font-family: "Playfair Display", serif;
+  }
+  .font-body {
+    font-family: "Cormorant Garamond", serif;
+  }
+}
+
+@layer components {
+  .gold-text {
+    @apply text-primary;
+  }
+  .gold-border {
+    border-color: hsl(var(--gold));
+  }
+  .gold-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gold-dark)),
+      hsl(var(--gold)),
+      hsl(var(--gold-light)),
+      hsl(var(--gold))
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gold-line {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold)),
+      transparent
+    );
+    height: 1px;
+  }
+  .cream-texture {
+    background-color: hsl(var(--ivory));
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c5a0' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .parallax-slow {
+    will-change: transform;
+  }
+
+  .curtain-panel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    will-change: transform;
+  }
+
+  .curtain-left {
+    left: 0;
+    transform-origin: top left;
+  }
+
+  .curtain-right {
+    right: 0;
+    transform-origin: top right;
+  }
+
+  .curtain-open-left {
+    animation: curtain-open-left 2600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .curtain-open-right {
+    animation: curtain-open-right 2600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .scroll-triangle {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid rgb(92, 32, 24);
+    opacity: 0.7;
+  }
+
+  .scroll-bounce {
+    animation: scroll-bounce 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes curtain-open-left {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  18% {
+    transform: translateX(-6%) rotate(-0.5deg);
+  }
+  70% {
+    transform: translateX(-104%) rotate(-2.5deg);
+  }
+  85% {
+    transform: translateX(-98%) rotate(-2deg);
+  }
+  100% {
+    transform: translateX(-100%) rotate(-2deg);
+  }
+}
+
+@keyframes curtain-open-right {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  18% {
+    transform: translateX(6%) rotate(0.5deg);
+  }
+  70% {
+    transform: translateX(104%) rotate(2.5deg);
+  }
+  85% {
+    transform: translateX(98%) rotate(2deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(2deg);
+  }
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
