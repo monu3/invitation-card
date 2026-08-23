@@ -2,7 +2,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Calendar, Clock } from "lucide-react";
 import haldiImage from "@/assets/haldi.jpg";
-import baratImage from "@/assets/barat2.jpg";
+import baratImage from "@/assets/sangeet.png";
 import flora from "@/assets/flora.webp";
 
 interface EventCardProps {
@@ -80,13 +80,13 @@ const ScheduleSection = () => {
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
           <EventCard
-            dateEn="March 30, 2026"
+            dateEn="November 24, 2026"
             dateUr="۱۳ مارچ ۲۰۲۶"
             delay={150}
             bgImage={haldiImage}
           />
           <EventCard
-            dateEn="March 31, 2026"
+            dateEn="November 25, 2026"
             dateUr="۱۵ مارچ ۲۰۲۶"
             delay={250}
             bgImage={baratImage}

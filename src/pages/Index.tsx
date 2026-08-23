@@ -17,7 +17,7 @@ const Index = () => {
     <LanguageProvider>
       <div className="min-h-screen overflow-x-hidden">
         <CurtainAnimation onComplete={handleCurtainComplete} />
-        <LanguageToggle />
+        {/* <LanguageToggle /> */}
         <AudioPlayer />
         <HeroSection />
         <ScheduleSection />

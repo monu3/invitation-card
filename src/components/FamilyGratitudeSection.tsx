@@ -63,7 +63,7 @@ const FamilyGratitudeSection = () => {
                     : "font-display text-xl md:text-2xl text-primary mb-1"
                 }
               >
-                {t("Ubaidur Rahman Siddiqui", "جناب خالد حسین صاحب و اہلیہ")}
+                {t("Mr. & Mrs. Khaitan", "جناب خالد حسین صاحب و اہلیہ")}
               </h3>
               <p
                 className={
@@ -104,7 +104,7 @@ const FamilyGratitudeSection = () => {
                     : "font-display text-xl md:text-2xl text-primary mb-1"
                 }
               >
-                {t("Mr. & Mrs. Siddhique", "جناب طارق احمد صاحب و اہلیہ")}
+                {t("Mr. & Mrs. Nayabaniya", "جناب طارق احمد صاحب و اہلیہ")}
               </h3>
               <p
                 className={
@@ -173,7 +173,7 @@ const FamilyGratitudeSection = () => {
                       : "font-display text-2xl italic text-primary"
                   }
                 >
-                  {t("Sonu & Farheen", "عائشہ و احمد")}
+                  {t("Anant & Gauri", "عائشہ و احمد")}
                 </p>
               </div>
             </div>

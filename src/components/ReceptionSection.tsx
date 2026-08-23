@@ -102,7 +102,7 @@ const ReceptionSection = () => {
                     : "font-display text-lg text-primary"
                 }
               >
-                {t("April 2, 2026", "۱۶ مارچ ۲۰۲۶")}
+                {t("November 26, 2026", "۱۶ مارچ ۲۰۲۶")}
               </p>
               <p
                 className={

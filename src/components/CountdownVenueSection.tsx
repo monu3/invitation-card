@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/hooks/useLanguage";
 import ScrollReveal from "@/components/ScrollReveal";
 import { MapPin, Navigation } from "lucide-react";
-import venueImage from "@/assets/catring.jpg";
+// import venueImage from "@/assets/catring.jpg";
+import venueImage from "@/assets/venue1.png";
 import flora from "@/assets/flora.webp";
 
-const BARAT_DATE = new Date("2026-03-31T19:00:00").getTime();
+const BARAT_DATE = new Date("2026-11-26T19:00:00").getTime();
 
 interface TimeLeft {
   days: number;
@@ -147,7 +148,7 @@ const CountdownVenueSection = () => {
                     : "font-display text-2xl md:text-3xl text-ivory mb-1"
                 }
               >
-                {t("The Grand Party", "گرینڈ مارکی")}
+                {t("Avocado and Orchid Resort", "گرینڈ مارکی")}
               </h3>
             </div>
           </div>
@@ -166,14 +167,14 @@ const CountdownVenueSection = () => {
                   }
                 >
                   {t(
-                    "Latikoili Road, Surkhet, Nepal",
+                    "Chaukitole, Hetauda-2, Nepal",
                     "۱۲۳ گارڈن ایونیو، لاہور، پاکستان",
                   )}
                 </p>
               </div>
             </div>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=28.586695,81.616423"
+              href="https://www.google.com/maps/dir/?api=1&destination=27.435994473929117,85.03652759738166"
               target="_blank"
               rel="noopener noreferrer"
               className={

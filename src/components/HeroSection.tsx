@@ -39,11 +39,8 @@ const HeroSection = () => {
             </p>
           ) : (
             <p className="font-body text-base sm:text-base text-primary max-w-xs sm:max-w-sm mx-auto leading-relaxed">
-              <span className="block font-bold">In</span>
-              <span className="block font-bold">The Name of</span>
-              <span className="block font-bold">Allah,</span>
-              <span className="block font-bold">The Most Gracious,</span>
-              <span className="block font-bold">The Most Merciful</span>
+              <span className="block font-bold">मंगलम भगवान विष्णु, मंगलम गरुड़ध्वज।</span>
+              <span className="block font-bold">मंगलम पुण्डरीकाक्ष, मंगलाय तनो हरि।</span>
             </p>
           )}
         </div>
@@ -80,7 +77,7 @@ const HeroSection = () => {
             ) : (
               <div className="mb-4">
                 <h1 className="font-display text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
-                  Sonu
+                  Anant
                 </h1>
                 <div className="flex items-center justify-center gap-4 sm:gap-6 my-3 sm:my-4">
                   <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
@@ -90,7 +87,7 @@ const HeroSection = () => {
                   <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
                 </div>
                 <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
-                  Farheen
+                  Gauri
                 </h1>
               </div>
             )}
@@ -118,7 +115,7 @@ const HeroSection = () => {
                     : "font-display text-base sm:text-lg md:text-xl text-primary mt-1"
                 }
               >
-                {t("March 31, 2026", "۳۱ مارچ ۲۰۲۶")}
+                {t("November 26, 2026", "۳۱ مارچ ۲۰۲۶")}
               </p>
             </div>
           </ScrollReveal>
