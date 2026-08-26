@@ -1,11 +1,13 @@
-import { useLanguage } from "@/hooks/useLanguage";
 import ScrollReveal from "@/components/ScrollReveal";
 import curtainOpen from "@/assets/curtain-open.jpg";
 import flora from "@/assets/flora.webp";
+import PeacockMotif from "@/components/rajasthani/PeacockMotif";
+import ElephantMotif from "@/components/rajasthani/ElephantMotif";
+import FloralMandala from "@/components/rajasthani/FloralMandala";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const HeroSection = () => {
-  const { lang, t } = useLanguage();
-  const isUrdu = lang === "ur";
+  const { t } = useLanguage();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -25,72 +27,88 @@ const HeroSection = () => {
         style={{ backgroundImage: `url(${curtainOpen})` }}
       />
       <div className="absolute inset-0 z-20 bg-background/10" />
+
+      {/* Decorative top mandala */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 rajasthani-motif">
+        <FloralMandala size={100} color="hsl(11, 65%, 25%)" />
+      </div>
+
+      {/* Decorative elephants - left and right */}
+      <div className="absolute bottom-32 left-4 z-30 rajasthani-motif hidden md:block">
+        <ElephantMotif size={60} color="hsl(11, 65%, 25%)" />
+      </div>
+      <div className="absolute bottom-32 right-4 z-30 rajasthani-motif hidden md:block" style={{ transform: "scaleX(-1)" }}>
+        <ElephantMotif size={60} color="hsl(11, 65%, 25%)" />
+      </div>
+
       {/* Decorative top ornament */}
       <div className="absolute top-0 left-0 right-0 h-px gold-line z-30" />
 
-      <div className="relative z-30 text-center max-w-2xl mx-auto w-full min-h-screen flex flex-col items-center justify-between pt-4 pb-10 px-4 gap-8">
-        {/* Bismillah */}
+      <div className="relative z-30 text-center max-w-2xl mx-auto w-full min-h-screen flex flex-col items-center justify-between pt-24 sm:pt-4 pb-10 px-4 gap-8">
+        {/* Rajasthani Welcome with Peacock */}
         <div className="animate-fade-in opacity-0">
-          {isUrdu ? (
-            <p className="font-urdu text-base sm:text-base text-primary max-w-xs sm:max-w-sm mx-auto leading-relaxed">
-              <span className="block">بِسْمِ اللَّهِ</span>
-              <span className="block">الرَّحْمَٰنِ</span>
-              <span className="block">الرَّحِيمِ</span>
-            </p>
-          ) : (
-            <p className="font-body text-base sm:text-base text-primary max-w-xs sm:max-w-sm mx-auto leading-relaxed">
-              <span className="block font-bold">मंगलम भगवान विष्णु, मंगलम गरुड़ध्वज।</span>
-              <span className="block font-bold">मंगलम पुण्डरीकाक्ष, मंगलाय तनो हरि।</span>
-            </p>
-          )}
+          <PeacockMotif size={50} color="hsl(11, 65%, 25%)" className="mx-auto mb-2" />
+          <p className="font-body text-lg sm:text-xl text-primary max-w-xs sm:max-w-sm mx-auto leading-relaxed">
+            <span className="block font-bold tracking-wide">पधारो म्हारे देश</span>
+          </p>
+          <p className="font-body text-xs sm:text-sm text-muted-foreground mt-2 tracking-[0.2em] uppercase">
+            {t("Welcome to our land", "हमारे घर आइए")}
+          </p>
+          <svg viewBox="0 0 400 120" className="w-72 sm:w-80 md:w-96 mx-auto mt-4 text-primary">
+            <defs>
+              <path id="mantraArc1" d="M 20 90 A 180 60 0 0 1 380 90" fill="none" />
+              <path id="mantraArc2" d="M 20 105 A 180 45 0 0 1 380 105" fill="none" />
+            </defs>
+            <text className="font-bold" fontSize="13" fill="currentColor" textAnchor="middle">
+              <textPath href="#mantraArc1" startOffset="50%">
+                मंगलम भगवान विष्णु, मंगलम गरुड़ध्वज।
+              </textPath>
+            </text>
+            <text className="font-bold" fontSize="13" fill="currentColor" textAnchor="middle">
+              <textPath href="#mantraArc2" startOffset="50%">
+                मंगलम पुण्डरीकाक्ष, मंगलाय तनो हरि।
+              </textPath>
+            </text>
+          </svg>
         </div>
 
         {/* Center content: invitation + names */}
         <div className="flex-1 flex flex-col items-center justify-center w-full max-w-xl">
           {/* We invite you */}
           <ScrollReveal delay={600}>
-            {isUrdu ? (
-              <p className="font-urdu text-xs sm:text-sm md:text-base text-muted-foreground mb-8 max-w-sm mx-auto leading-relaxed">
-                <span className="block">ہم خوشی سے</span>
-                <span className="block">آپ کو اس مبارک</span>
-                <span className="block">موقع پر مدعو کرتے ہیں</span>
-              </p>
-            ) : (
-              <p className="font-body text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.25em] uppercase text-inherit-foreground mb-8 leading-relaxed">
-                <span className="block font-bold">We Invite You</span>
-                <span className="block font-bold">To Celebrate The</span>
-                <span className="block font-bold">Union Of</span>
-              </p>
-            )}
+            <p className="font-body text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.25em] uppercase text-inherit-foreground mb-8 leading-relaxed">
+              <span className="block font-bold">{t("With Warm Regards", "शुभकामनाओं के साथ")}</span>
+              <span className="block font-bold">{t("We Invite You To", "हम आपको आमंत्रित करते हैं")}</span>
+              <span className="block font-bold">{t("Celebrate The Union Of", "इस शादी का जश्न मनाने")}</span>
+            </p>
           </ScrollReveal>
 
-          {/* Names */}
+          {/* Names with elephant decorations */}
           <ScrollReveal delay={900}>
-            {isUrdu ? (
-              <div className="mb-4">
-                <div className="font-urdu text-3xl sm:text-4xl md:text-5xl text-primary leading-tight max-w-sm mx-auto">
-                  <span className="block">سونو</span>
-                  <span className="block">&</span>
-                  <span className="block">فارین</span>
-                </div>
+            <div className="mb-4 relative">
+              {/* Left elephant */}
+              <div className="absolute -left-16 top-1/2 -translate-y-1/2 rajasthani-motif hidden sm:block">
+                <ElephantMotif size={45} color="hsl(11, 65%, 25%)" />
               </div>
-            ) : (
-              <div className="mb-4">
-                <h1 className="font-display text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
-                  Anant
-                </h1>
-                <div className="flex items-center justify-center gap-4 sm:gap-6 my-3 sm:my-4">
-                  <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
-                  <span className="font-display text-2xl sm:text-3xl md:text-4xl text-primary italic">
-                    &
-                  </span>
-                  <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
-                </div>
-                <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
-                  Gauri
-                </h1>
+              {/* Right elephant */}
+              <div className="absolute -right-16 top-1/2 -translate-y-1/2 rajasthani-motif hidden sm:block" style={{ transform: "translateY(-50%) scaleX(-1)" }}>
+                <ElephantMotif size={45} color="hsl(11, 65%, 25%)" />
               </div>
-            )}
+
+              <h1 className="font-display text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
+                Anant
+              </h1>
+              <div className="flex items-center justify-center gap-4 sm:gap-6 my-3 sm:my-4">
+                <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
+                <span className="font-display text-2xl sm:text-3xl md:text-4xl text-primary italic">
+                  &
+                </span>
+                <div className="gold-line flex-1 max-w-[80px] sm:max-w-[100px]" />
+              </div>
+              <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light gold-gradient leading-tight">
+                Gauri
+              </h1>
+            </div>
           </ScrollReveal>
         </div>
 
@@ -98,24 +116,12 @@ const HeroSection = () => {
         <div className="flex flex-col items-center gap-4 pb-4">
           {/* Save the date */}
           <ScrollReveal delay={1300}>
-            <div className="inline-block border border-primary/30 rounded-sm px-4 sm:px-6 py-2">
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-xs sm:text-sm text-primary"
-                    : "font-body text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-primary"
-                }
-              >
-                {t("Save the Date", "تاریخ محفوظ کریں")}
+            <div className="rajasthani-border px-4 sm:px-6 py-3">
+              <p className="font-body text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-primary">
+                {t("Save the Date", "तिथि सुरक्षित रखें")}
               </p>
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-sm sm:text-base text-primary mt-1"
-                    : "font-display text-base sm:text-lg md:text-xl text-primary mt-1"
-                }
-              >
-                {t("November 26, 2026", "۳۱ مارچ ۲۰۲۶")}
+              <p className="font-display text-base sm:text-lg md:text-xl text-primary mt-1">
+                {t("November 25 - 26, 2026", "२५ - २६ नवंबर, २०२६")}
               </p>
             </div>
           </ScrollReveal>
@@ -123,14 +129,8 @@ const HeroSection = () => {
           {/* Scroll hint */}
           <div>
             <div className="scroll-triangle scroll-bounce mx-auto" />
-            <p
-              className={
-                isUrdu
-                  ? "font-urdu text-xs text-muted-foreground mt-2"
-                  : "font-body text-[9px] tracking-[0.3em] uppercase text-muted-foreground mt-2"
-              }
-            >
-              {t("Scroll", "نیچے دیکھیں")}
+            <p className="font-body text-[9px] tracking-[0.3em] uppercase text-muted-foreground mt-2">
+              {t("Scroll", "नीचे स्क्रॉल करें")}
             </p>
           </div>
         </div>

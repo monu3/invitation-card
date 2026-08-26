@@ -72,7 +72,6 @@ export default {
       fontFamily: {
         display: ['"Playfair Display"', 'serif'],
         body: ['"Cormorant Garamond"', 'serif'],
-        urdu: ['"Noto Nastaliq Urdu"', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

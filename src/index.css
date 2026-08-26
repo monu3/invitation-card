@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -44,6 +44,13 @@
     --cream: 39 35% 93%;
     --cream-dark: 36 25% 85%;
 
+    /* Rajasthani Colors */
+    --rajasthani-red: 350 80% 45%;
+    --rajasthani-orange: 20 90% 50%;
+    --rajasthani-yellow: 45 100% 50%;
+    --rajasthani-green: 140 60% 35%;
+    --rajasthani-pink: 330 80% 55%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -70,11 +77,6 @@
   h5,
   h6 {
     font-family: "Playfair Display", serif;
-  }
-  .font-urdu {
-    font-family: "Noto Nastaliq Urdu", serif;
-    direction: rtl;
-    line-height: 2.2;
   }
   .font-display {
     font-family: "Playfair Display", serif;
@@ -114,8 +116,142 @@
     height: 1px;
   }
   .cream-texture {
-    background-color: hsl(var(--ivory));
+    background-color: hsl(var(--ivory) / 0.8);
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4c5a0' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Rajasthani Border Pattern */
+  .rajasthani-border {
+    border: 2px solid hsl(var(--gold));
+    position: relative;
+  }
+
+  .rajasthani-border::before,
+  .rajasthani-border::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid hsl(var(--gold));
+  }
+
+  .rajasthani-border::before {
+    top: -6px;
+    left: -6px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .rajasthani-border::after {
+    bottom: -6px;
+    right: -6px;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Rajasthani Arch Frame */
+  .rajasthani-arch {
+    position: relative;
+    border: 1px solid hsl(var(--gold));
+    border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+    padding: 2rem;
+  }
+
+  .rajasthani-arch::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid hsl(var(--gold));
+    border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+    opacity: 0.5;
+  }
+
+  /* Rajasthani Motif Base */
+  .rajasthani-motif {
+    opacity: 0.15;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Rajasthani Section Divider */
+  .rajasthani-divider {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--rajasthani-red)),
+      hsl(var(--rajasthani-orange)),
+      hsl(var(--rajasthani-yellow)),
+      hsl(var(--rajasthani-orange)),
+      hsl(var(--rajasthani-red)),
+      transparent
+    );
+  }
+
+  /* Paisley Background Pattern */
+  .paisley-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='90' viewBox='0 0 60 90' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C15 5 5 20 5 35C5 60 20 85 30 90C40 85 55 60 55 35C55 20 45 5 30 5Z' fill='none' stroke='%23C41E3A' stroke-width='0.5' opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 60px 90px;
+  }
+
+  /* Rajasthani Textile Pattern */
+  .rajasthani-textile {
+    background-color: hsl(var(--ivory));
+    background-image:
+      radial-gradient(circle at 25% 25%, hsl(350, 80%, 45%) 2%, transparent 3%),
+      radial-gradient(circle at 75% 75%, hsl(20, 90%, 50%) 2%, transparent 3%),
+      radial-gradient(circle at 50% 50%, hsl(45, 100%, 50%) 1.5%, transparent 2.5%),
+      radial-gradient(circle at 25% 75%, hsl(350, 80%, 45%) 1.5%, transparent 2.5%),
+      radial-gradient(circle at 75% 25%, hsl(20, 90%, 50%) 1.5%, transparent 2.5%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        hsl(11, 65%, 25%, 0.03) 20px,
+        hsl(11, 65%, 25%, 0.03) 21px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 20px,
+        hsl(11, 65%, 25%, 0.03) 20px,
+        hsl(11, 65%, 25%, 0.03) 21px
+      );
+    background-size: 80px 80px;
+  }
+
+  /* Rajasthani Arch Border */
+  .rajasthani-arch-border {
+    position: relative;
+    border: 2px solid hsl(var(--gold));
+  }
+
+  .rajasthani-arch-border::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 20px;
+    background: 
+      radial-gradient(circle at 10% 100%, transparent 8px, hsl(var(--gold)) 8px, hsl(var(--gold)) 10px, transparent 10px),
+      radial-gradient(circle at 30% 100%, transparent 8px, hsl(var(--gold)) 8px, hsl(var(--gold)) 10px, transparent 10px),
+      radial-gradient(circle at 50% 100%, transparent 8px, hsl(var(--gold)) 8px, hsl(var(--gold)) 10px, transparent 10px),
+      radial-gradient(circle at 70% 100%, transparent 8px, hsl(var(--gold)) 8px, hsl(var(--gold)) 10px, transparent 10px),
+      radial-gradient(circle at 90% 100%, transparent 8px, hsl(var(--gold)) 8px, hsl(var(--gold)) 10px, transparent 10px);
+  }
+
+  /* Vibrant Rajasthani Section Background */
+  .rajasthani-section-bg {
+    background: linear-gradient(
+      135deg,
+      hsl(350, 80%, 45%, 0.05) 0%,
+      hsl(20, 90%, 50%, 0.05) 25%,
+      hsl(45, 100%, 50%, 0.05) 50%,
+      hsl(20, 90%, 50%, 0.05) 75%,
+      hsl(350, 80%, 45%, 0.05) 100%
+    );
   }
 }
 

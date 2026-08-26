@@ -1,45 +1,43 @@
-import { useLanguage } from "@/hooks/useLanguage";
 import ScrollReveal from "@/components/ScrollReveal";
 import { Heart } from "lucide-react";
 import flora from "@/assets/flora.webp";
+import ElephantMotif from "@/components/rajasthani/ElephantMotif";
+import FloralMandala from "@/components/rajasthani/FloralMandala";
+import PaisleyPattern from "@/components/rajasthani/PaisleyPattern";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const FamilyGratitudeSection = () => {
-  const { lang, t } = useLanguage();
-  const isUrdu = lang === "ur";
+  const { t } = useLanguage();
 
   return (
-    <section className="relative py-8 md:py-32 px-6 bg-background">
+    <section className="relative py-8 md:py-32 px-6 bg-background/80">
       <div className="max-w-5xl mx-auto">
+        {/* Decorative mandala */}
+        <div className="absolute top-10 left-10 rajasthani-motif hidden md:block">
+          <FloralMandala size={120} color="hsl(11, 65%, 25%)" />
+        </div>
+        <div className="absolute top-10 right-10 rajasthani-motif hidden md:block">
+          <FloralMandala size={120} color="hsl(11, 65%, 25%)" />
+        </div>
+
         {/* Family */}
         <ScrollReveal>
           <div className="text-center mb-8">
-            <p
-              className={
-                isUrdu
-                  ? "font-urdu text-sm text-primary mb-3"
-                  : "font-body text-sm tracking-[0.4em] uppercase text-primary mb-3"
-              }
-            >
-              {t("With Compliments From", "آپ کی عنایات سے")}
+            <p className="font-body text-sm tracking-[0.4em] uppercase text-primary mb-3">
+              {t("With Compliments From", "शुभकामनाएं")}
             </p>
-            <h2
-              className={
-                isUrdu
-                  ? "font-urdu text-4xl md:text-5xl text-primary"
-                  : "font-display text-4xl md:text-5xl text-primary"
-              }
-            >
-              {t("Our Families", "ہمارے خاندان")}
+            <h2 className="font-display text-4xl md:text-5xl text-primary">
+              {t("Our Families", "हमारा परिवार")}
             </h2>
-            <div className="gold-line w-24 mx-auto mt-6" />
+            <div className="rajasthani-divider w-48 mx-auto mt-6" />
           </div>
         </ScrollReveal>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8 mb-20">
-          {/* Bride's family */}
+          {/* Groom's family */}
           <ScrollReveal delay={100}>
             <div
-              className="text-center p-8 border border-border rounded-sm bg-card/40"
+              className="text-center p-8 border-2 border-primary/30 rounded-sm bg-card/40 relative"
               style={{
                 backgroundImage: `url(${flora})`,
                 backgroundRepeat: "no-repeat",
@@ -47,40 +45,30 @@ const FamilyGratitudeSection = () => {
                 backgroundSize: "cover",
               }}
             >
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-sm text-primary mb-4"
-                    : "font-body text-sm tracking-[0.3em] uppercase text-primary mb-4"
-                }
-              >
-                {t("Bride's Family", "دلہن کا خاندان")}
+              {/* Paisley corner */}
+              <div className="absolute top-2 left-2 rajasthani-motif">
+                <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
+              </div>
+              <div className="absolute top-2 right-2 rajasthani-motif" style={{ transform: "scaleX(-1)" }}>
+                <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
+              </div>
+
+              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+                {t("Groom's Family", "दूल्हे का परिवार")}
               </p>
-              <h3
-                className={
-                  isUrdu
-                    ? "font-urdu text-xl md:text-2xl text-primary mb-1"
-                    : "font-display text-xl md:text-2xl text-primary mb-1"
-                }
-              >
-                {t("Mr. & Mrs. Khaitan", "جناب خالد حسین صاحب و اہلیہ")}
+              <h3 className="font-display text-xl md:text-2xl text-primary mb-1">
+                {t("Mr. & Mrs. Nayabaniya", "श्री एवं श्रीमती नयाबानिया")}
               </h3>
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-base text-primary"
-                    : "font-body text-base text-primary"
-                }
-              >
-                {t("Parents of the Bride", "والدین دلہن")}
+              <p className="font-body text-base text-primary">
+                {t("Parents of the Groom", "दूल्हे के माता-पिता")}
               </p>
             </div>
           </ScrollReveal>
 
-          {/* Groom's family */}
+          {/* Bride's family */}
           <ScrollReveal delay={250}>
             <div
-              className="text-center p-8 border border-border rounded-sm bg-card/40"
+              className="text-center p-8 border-2 border-primary/30 rounded-sm bg-card/40 relative"
               style={{
                 backgroundImage: `url(${flora})`,
                 backgroundRepeat: "no-repeat",
@@ -88,32 +76,22 @@ const FamilyGratitudeSection = () => {
                 backgroundSize: "cover",
               }}
             >
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-sm text-primary mb-4"
-                    : "font-body text-sm tracking-[0.3em] uppercase text-primary mb-4"
-                }
-              >
-                {t("Groom's Family", "دولہا کا خاندان")}
+              {/* Paisley corner */}
+              <div className="absolute top-2 left-2 rajasthani-motif">
+                <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
+              </div>
+              <div className="absolute top-2 right-2 rajasthani-motif" style={{ transform: "scaleX(-1)" }}>
+                <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
+              </div>
+
+              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+                {t("Bride's Family", "दुल्हन का परिवार")}
               </p>
-              <h3
-                className={
-                  isUrdu
-                    ? "font-urdu text-xl md:text-2xl text-primary mb-1"
-                    : "font-display text-xl md:text-2xl text-primary mb-1"
-                }
-              >
-                {t("Mr. & Mrs. Nayabaniya", "جناب طارق احمد صاحب و اہلیہ")}
+              <h3 className="font-display text-xl md:text-2xl text-primary mb-1">
+                {t("Mr. & Mrs. Khaitan", "श्री एवं श्रीमती खैतान")}
               </h3>
-              <p
-                className={
-                  isUrdu
-                    ? "font-urdu text-base text-primary"
-                    : "font-body text-base text-primary"
-                }
-              >
-                {t("Parents of the Groom", "والدین دولہا")}
+              <p className="font-body text-base text-primary">
+                {t("Parents of the Bride", "दुल्हन के माता-पिता")}
               </p>
             </div>
           </ScrollReveal>
@@ -123,9 +101,17 @@ const FamilyGratitudeSection = () => {
         <ScrollReveal delay={200}>
           <div className="max-w-xl mx-auto">
             <div
-              className="rounded-lg p-6 md:p-8"
+              className="rounded-lg p-6 md:p-8 relative"
               style={{ backgroundColor: "hsl(var(--gold-dark))" }}
             >
+              {/* Elephant decorations */}
+              <div className="absolute -left-4 top-1/2 -translate-y-1/2 rajasthani-motif hidden md:block">
+                <ElephantMotif size={50} color="hsl(40, 40%, 97%)" />
+              </div>
+              <div className="absolute -right-4 top-1/2 -translate-y-1/2 rajasthani-motif hidden md:block" style={{ transform: "translateY(-50%) scaleX(-1)" }}>
+                <ElephantMotif size={50} color="hsl(40, 40%, 97%)" />
+              </div>
+
               {/* Inner card with zigzag/wavy edge effect */}
               <div
                 className="relative py-6 px-8 md:px-12 text-center"
@@ -143,37 +129,18 @@ const FamilyGratitudeSection = () => {
                   )`,
                 }}
               >
-                <h2
-                  className={
-                    isUrdu
-                      ? "font-urdu text-3xl md:text-4xl text-primary mb-2"
-                      : "font-display text-3xl md:text-4xl italic text-primary mb-2"
-                  }
-                >
-                  {t("Thank You", "شکریہ")}
+                <h2 className="font-display text-3xl md:text-4xl italic text-primary mb-2">
+                  {t("Thank You", "धन्यवाद")}
                 </h2>
 
-                <p
-                  className={
-                    isUrdu
-                      ? "font-urdu text-lg text-primary max-w-sm mx-auto leading-relaxed mb-6"
-                      : "font-body text-lg text-primary max-w-sm mx-auto leading-relaxed mb-6"
-                  }
-                >
-                  {t(
-                    "For joining us on this special day. Your presence is the best gift we could receive.",
-                    "اس خاص دن پر ہمارے ساتھ شامل ہونے کا شکریہ۔ آپ کی موجودگی ہمارے لیے سب سے بڑا تحفہ ہے۔",
-                  )}
+                <div className="rajasthani-divider w-32 mx-auto my-4" />
+
+                <p className="font-body text-lg text-primary max-w-sm mx-auto leading-relaxed mb-6">
+                  {t("For joining us on this special day. Your presence is the best gift we could receive.", "इस विशेष दिन पर हमसे जुड़ने के लिए धन्यवाद। आपकी उपस्थिति हमारे लिए सबसे बड़ा उपहार है।")}
                 </p>
 
-                <p
-                  className={
-                    isUrdu
-                      ? "font-urdu text-2xl text-primary"
-                      : "font-display text-2xl italic text-primary"
-                  }
-                >
-                  {t("Anant & Gauri", "عائشہ و احمد")}
+                <p className="font-display text-2xl italic text-primary">
+                  Anant & Gauri
                 </p>
               </div>
             </div>

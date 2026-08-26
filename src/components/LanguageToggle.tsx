@@ -12,7 +12,7 @@ const LanguageToggle = () => {
     >
       <Globe className="w-4 h-4 text-primary transition-transform duration-300 group-hover:rotate-180" />
       <span className="font-body text-sm tracking-wider text-foreground">
-        {lang === "en" ? "اردو" : "English"}
+        {lang === "en" ? "हिन्दी" : "English"}
       </span>
     </button>
   );

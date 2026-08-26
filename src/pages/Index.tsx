@@ -8,6 +8,7 @@ import ScheduleSection from "@/components/ScheduleSection";
 import CountdownVenueSection from "@/components/CountdownVenueSection";
 import ReceptionSection from "@/components/ReceptionSection";
 import FamilyGratitudeSection from "@/components/FamilyGratitudeSection";
+import overallBg from "@/assets/overall background.png";
 
 const Index = () => {
   const [curtainDone, setCurtainDone] = useState(false);
@@ -15,9 +16,12 @@ const Index = () => {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen overflow-x-hidden">
+      <div
+        className="min-h-screen overflow-x-hidden bg-center bg-cover bg-fixed"
+        style={{ backgroundImage: `url(${overallBg})` }}
+      >
         <CurtainAnimation onComplete={handleCurtainComplete} />
-        {/* <LanguageToggle /> */}
+        <LanguageToggle />
         <AudioPlayer />
         <HeroSection />
         <ScheduleSection />
