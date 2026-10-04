@@ -39,10 +39,7 @@ const ReceptionSection = () => {
             </div>
 
             {/* Content inside the frame - with top/bottom padding of 32px (8 units) */}
-            <div className="relative py-8 px-8 md:px-12 text-center flex flex-col items-center justify-center min-h-[550px] md:min-h-[600px] gap-3">
-              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-1">
-              </p>
-
+            <div className="relative pt-8 pb-24 px-8 md:px-12 text-center flex flex-col items-center justify-center min-h-[550px] md:min-h-[600px] gap-2">
               <h2 className="font-display text-4xl md:text-5xl text-primary mb-1">
                 {t("Reception", "स्वागत समारोह")}
               </h2>
@@ -69,14 +66,16 @@ const ReceptionSection = () => {
                 </div>
               </div>
 
-              <div className="rajasthani-divider w-32 mx-auto my-2" />
+              <div className="rajasthani-divider w-32 mx-auto mt-2 mb-0" />
 
-              <p className="font-display text-lg text-primary">
-                {t("November 26, 2026", "२६ नवंबर, २०२६")}
-              </p>
-              <p className="font-body text-base text-primary mb-1">
-                {t("1:00 PM", "दोपहर 1:00 बजे")}
-              </p>
+              <div>
+                <p className="font-display text-lg text-primary leading-tight">
+                  {t("November 26, 2026", "२६ नवंबर, २०२६")}
+                </p>
+                <p className="font-body text-base text-primary leading-tight">
+                  {t("7:00 PM", "शाम 7:00 बजे")}
+                </p>
+              </div>
             </div>
           </div>
         </ScrollReveal>

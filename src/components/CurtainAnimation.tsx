@@ -1,19 +1,76 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import confetti from "canvas-confetti";
 import curtainClosed from "@/assets/curtain-closed.jpg";
 
-const CurtainAnimation = ({ onComplete }: { onComplete: () => void }) => {
+const CURTAIN_COLORS = [
+  "#C41E3A",
+  "#E85D04",
+  "#F4A300",
+  "#D4AF37",
+  "#E6399B",
+  "#F9C74F",
+];
+
+const CurtainAnimation = ({ onComplete }: { onComplete?: () => void }) => {
   const [phase, setPhase] = useState<"closed" | "opening" | "open">("closed");
   const OPEN_DURATION_MS = 2600;
+  const firedRef = useRef(false);
 
   useEffect(() => {
     if (phase === "opening") {
       const timer = setTimeout(() => {
         setPhase("open");
-        onComplete();
+        onComplete?.();
       }, OPEN_DURATION_MS);
       return () => clearTimeout(timer);
     }
   }, [phase, onComplete, OPEN_DURATION_MS]);
+
+  useEffect(() => {
+    if (phase !== "open" || firedRef.current) return;
+    firedRef.current = true;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (reducedMotion) return;
+
+    const defaults = {
+      colors: CURTAIN_COLORS,
+      particleCount: 40,
+      spread: 70,
+      startVelocity: 45,
+      ticks: 220,
+      gravity: 0.9,
+      scalar: 0.9,
+      zIndex: 60,
+    };
+
+    const end = Date.now() + 1800;
+
+    confetti({ ...defaults, particleCount: 60, spread: 90, origin: { x: 0.5, y: 0.4 } });
+
+    const interval = window.setInterval(() => {
+      if (Date.now() > end) {
+        window.clearInterval(interval);
+        return;
+      }
+      confetti({
+        ...defaults,
+        particleCount: 12,
+        origin: { x: Math.random() * 0.3, y: 0.3 + Math.random() * 0.4 },
+        angle: 60,
+      });
+      confetti({
+        ...defaults,
+        particleCount: 12,
+        origin: { x: 0.7 + Math.random() * 0.3, y: 0.3 + Math.random() * 0.4 },
+        angle: 120,
+      });
+    }, 250);
+
+    return () => window.clearInterval(interval);
+  }, [phase]);
 
   return (
     <>

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import { MapPin, Navigation } from "lucide-react";
 import venueImage from "@/assets/venue1.png";
 import flora from "@/assets/flora.webp";
-import FloralMandala from "@/components/rajasthani/FloralMandala";
+import LazyLottie from "@/components/LazyLottie";
+import mandalaSpin from "@/assets/lottie/mandala-spin.json";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -16,7 +18,43 @@ interface TimeLeft {
   seconds: number;
 }
 
-const CountdownVenueSection = () => {
+const CountdownUnit = ({
+  value,
+  label,
+  index = 0,
+}: {
+  value: number;
+  label: string;
+  index?: number;
+}) => (
+  <motion.div
+    className="text-center"
+    initial={{ opacity: 0, y: 16 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, delay: index * 0.15 }}
+  >
+    <div className="relative overflow-hidden">
+      <AnimatePresence initial={false} mode="popLayout">
+        <motion.div
+          key={value}
+          initial={{ y: "100%" }}
+          animate={{ y: "0%" }}
+          exit={{ y: "-100%" }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          className="font-display text-4xl md:text-6xl text-primary leading-none"
+        >
+          {String(value).padStart(2, "0")}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+    <div className="font-body text-xs md:text-sm tracking-[0.3em] uppercase text-primary mt-2">
+      {label}
+    </div>
+  </motion.div>
+);
+
+const WeddingCountdown = () => {
   const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
@@ -41,22 +79,39 @@ const CountdownVenueSection = () => {
     return () => clearInterval(id);
   }, []);
 
-  const CountdownUnit = ({
-    value,
-    label,
-  }: {
-    value: number;
-    label: string;
-  }) => (
-    <div className="text-center">
-      <div className="font-display text-4xl md:text-6xl text-primary leading-none">
-        {String(value).padStart(2, "0")}
+  return (
+    <ScrollReveal>
+      <div className="text-center mb-8">
+        <p className="font-body text-sm tracking-[0.4em] uppercase text-primary mb-3">
+          {t("Counting Down To", "गिनती हो रही है")}
+        </p>
+        <h2 className="font-display text-4xl md:text-5xl text-primary mb-2">
+          {t("The Big Day", "बड़ा दिन")}
+        </h2>
+        <div className="rajasthani-divider w-48 mx-auto mt-6 mb-5" />
+
+        <div className="flex items-center justify-center gap-3 md:gap-12">
+          <CountdownUnit index={0} value={timeLeft.days} label={t("Days", "दिन")} />
+          <span className="font-display text-3xl text-primary/60 self-start mt-2">
+            :
+          </span>
+          <CountdownUnit index={1} value={timeLeft.hours} label={t("Hours", "घंटे")} />
+          <span className="font-display text-3xl text-primary/60 self-start mt-2">
+            :
+          </span>
+          <CountdownUnit index={2} value={timeLeft.minutes} label={t("Minutes", "मिनट")} />
+          <span className="font-display text-3xl text-primary/40 self-start mt-2">
+            :
+          </span>
+          <CountdownUnit index={3} value={timeLeft.seconds} label={t("Seconds", "सेकंड")} />
+        </div>
       </div>
-      <div className="font-body text-xs md:text-sm tracking-[0.3em] uppercase text-primary mt-2">
-        {label}
-      </div>
-    </div>
+    </ScrollReveal>
   );
+};
+
+const CountdownVenueSection = () => {
+  const { t } = useLanguage();
 
   return (
     <section className="relative py-8 md:py-32 px-6 cream-texture">
@@ -65,9 +120,9 @@ const CountdownVenueSection = () => {
         style={{ backgroundImage: `url(${flora})` }}
       />
 
-      {/* Decorative mandala behind countdown */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rajasthani-motif">
-        <FloralMandala size={300} color="hsl(11, 65%, 25%)" />
+      {/* Decorative spinning mandala behind countdown */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] max-w-[90vw] max-h-[60vh] opacity-[0.18] pointer-events-none">
+        <LazyLottie src={mandalaSpin} loop autoplay speed={0.8} />
       </div>
 
       {/* Decorative elephants */}
@@ -80,33 +135,7 @@ const CountdownVenueSection = () => {
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Countdown */}
-        <ScrollReveal>
-          <div className="text-center mb-8">
-            <p className="font-body text-sm tracking-[0.4em] uppercase text-primary mb-3">
-              {t("Counting Down To", "गिनती हो रही है")}
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl text-primary mb-2">
-              {t("The Big Day", "बड़ा दिन")}
-            </h2>
-            <div className="rajasthani-divider w-48 mx-auto mt-6 mb-5" />
-
-            <div className="flex items-center justify-center gap-3 md:gap-12">
-              <CountdownUnit value={timeLeft.days} label={t("Days", "दिन")} />
-              <span className="font-display text-3xl text-primary/60 self-start mt-2">
-                :
-              </span>
-              <CountdownUnit value={timeLeft.hours} label={t("Hours", "घंटे")} />
-              <span className="font-display text-3xl text-primary/60 self-start mt-2">
-                :
-              </span>
-              <CountdownUnit value={timeLeft.minutes} label={t("Minutes", "मिनट")} />
-              <span className="font-display text-3xl text-primary/40 self-start mt-2">
-                :
-              </span>
-              <CountdownUnit value={timeLeft.seconds} label={t("Seconds", "सेकंड")} />
-            </div>
-          </div>
-        </ScrollReveal>
+        <WeddingCountdown />
 
         {/* Venue */}
         <ScrollReveal delay={200}>
