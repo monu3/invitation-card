@@ -253,6 +253,25 @@
       hsl(350, 80%, 45%, 0.05) 100%
     );
   }
+
+  /* Sparkle twinkle (SVG sparkle components) */
+  .sparkle-twinkle {
+    animation: sparkle-twinkle 3s ease-in-out infinite;
+  }
+  .sparkle-float {
+    animation: sparkle-float 4s ease-in-out infinite;
+  }
+
+  /* Slow spinning mandala */
+  .mandala-spin-slow {
+    animation: mandala-spin 30s linear infinite;
+    transform-origin: center;
+  }
+
+  /* Gold glow pulse for names/text */
+  .glow-pulse {
+    animation: glow-pulse 3.5s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -354,5 +373,50 @@
   }
   50% {
     transform: translateY(6px);
+  }
+}
+
+@keyframes sparkle-twinkle {
+  0%,
+  100% {
+    transform: scale(0.6) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.15) rotate(45deg);
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes mandala-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 10px rgba(212, 175, 55, 0.25),
+      0 0 20px rgba(212, 175, 55, 0.1);
+  }
+  50% {
+    text-shadow:
+      0 0 18px rgba(212, 175, 55, 0.55),
+      0 0 36px rgba(212, 175, 55, 0.25);
   }
 }

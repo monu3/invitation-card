@@ -1,13 +1,68 @@
+import { useEffect, useRef } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
-import { Heart } from "lucide-react";
+import confetti from "canvas-confetti";
 import flora from "@/assets/flora.webp";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
 import FloralMandala from "@/components/rajasthani/FloralMandala";
 import PaisleyPattern from "@/components/rajasthani/PaisleyPattern";
 import { useLanguage } from "@/hooks/useLanguage";
 
+const THANKS_COLORS = ["#D4AF37", "#C41E3A", "#E85D04", "#F4A300", "#E6399B"];
+
 const FamilyGratitudeSection = () => {
   const { t } = useLanguage();
+  const thanksRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = thanksRef.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let fired = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || fired) return;
+        fired = true;
+        confetti({
+          particleCount: 70,
+          spread: 100,
+          startVelocity: 35,
+          ticks: 180,
+          gravity: 0.8,
+          scalar: 0.85,
+          colors: THANKS_COLORS,
+          origin: { x: 0.5, y: 0.6 },
+          zIndex: 60,
+        });
+        setTimeout(() => {
+          confetti({
+            particleCount: 35,
+            angle: 60,
+            spread: 60,
+            startVelocity: 30,
+            colors: THANKS_COLORS,
+            origin: { x: 0.1, y: 0.7 },
+            zIndex: 60,
+          });
+          confetti({
+            particleCount: 35,
+            angle: 120,
+            spread: 60,
+            startVelocity: 30,
+            colors: THANKS_COLORS,
+            origin: { x: 0.9, y: 0.7 },
+            zIndex: 60,
+          });
+        }, 250);
+        observer.disconnect();
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="relative py-8 md:py-32 px-6 bg-background/80">
@@ -99,7 +154,7 @@ const FamilyGratitudeSection = () => {
 
         {/* Thank You Card - styled with zigzag border and dark frame */}
         <ScrollReveal delay={200}>
-          <div className="max-w-xl mx-auto">
+          <div ref={thanksRef} className="max-w-xl mx-auto">
             <div
               className="rounded-lg p-6 md:p-8 relative"
               style={{ backgroundColor: "hsl(var(--gold-dark))" }}

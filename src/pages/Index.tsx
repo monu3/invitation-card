@@ -1,4 +1,3 @@
-import { useState, useCallback } from "react";
 import { LanguageProvider } from "@/hooks/useLanguage";
 import LanguageToggle from "@/components/LanguageToggle";
 import CurtainAnimation from "@/components/CurtainAnimation";
@@ -11,16 +10,13 @@ import FamilyGratitudeSection from "@/components/FamilyGratitudeSection";
 import overallBg from "@/assets/overall background.png";
 
 const Index = () => {
-  const [curtainDone, setCurtainDone] = useState(false);
-  const handleCurtainComplete = useCallback(() => setCurtainDone(true), []);
-
   return (
     <LanguageProvider>
       <div
         className="min-h-screen overflow-x-hidden bg-center bg-cover bg-fixed"
         style={{ backgroundImage: `url(${overallBg})` }}
       >
-        <CurtainAnimation onComplete={handleCurtainComplete} />
+        <CurtainAnimation />
         <LanguageToggle />
         <AudioPlayer />
         <HeroSection />
