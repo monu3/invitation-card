@@ -108,7 +108,7 @@ const ScheduleSection = () => {
   const { t } = useLanguage();
 
   const day1Events = [
-    { name: t("Mayara (Bhaat)", "मायरा (भाट)"), time: "12:15 PM" },
+    { name: t("Mayara (Bhaat)", "मायरा (भाट)"), time: "1:15 PM" },
     { name: t("Tilak + Sangeet", "तिलक + संगीत"), time: "6:15 PM" },
   ];
 

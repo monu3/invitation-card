@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import ScrollReveal from "@/components/ScrollReveal";
 import confetti from "canvas-confetti";
+import { Phone } from "lucide-react";
 import flora from "@/assets/flora.webp";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
 import FloralMandala from "@/components/rajasthani/FloralMandala";
@@ -108,15 +109,21 @@ const FamilyGratitudeSection = () => {
                 <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
               </div>
 
-              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-1">
                 {t("Groom's Family", "दूल्हे का परिवार")}
               </p>
-              <h3 className="font-display text-xl md:text-2xl text-primary mb-1">
-                {t("Mr. & Mrs. Nayabaniya", "श्री एवं श्रीमती नयाबानिया")}
-              </h3>
-              <p className="font-body text-base text-primary">
+              <p className="font-body text-base text-primary mb-4">
                 {t("Parents of the Groom", "दूल्हे के माता-पिता")}
               </p>
+              <h3 className="font-display text-xl md:text-2xl text-primary mb-1 leading-snug">
+                {t("Mr. Indra Chandra Nayabaniya", "श्री इंद्र चंद्र नयाबानिया")}
+              </h3>
+              <p className="font-display text-xl md:text-2xl text-primary mb-2 leading-snug">
+                {t("Mrs. Kusum Devi Nayabaniya", "श्रीमती कुसुम देवी नयाबानिया")}
+              </p>
+              <h3 className="font-display text-lg md:text-xl text-primary leading-snug">
+                {t("Along with all Nayabaniya Family Members", "नयाबानिया समस्त परिवार सहित")}
+              </h3>
             </div>
           </ScrollReveal>
 
@@ -142,9 +149,12 @@ const FamilyGratitudeSection = () => {
               <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
                 {t("Bride's Family", "दुल्हन का परिवार")}
               </p>
-              <h3 className="font-display text-xl md:text-2xl text-primary mb-1">
-                {t("Mr. & Mrs. Khaitan", "श्री एवं श्रीमती खैतान")}
+              <h3 className="font-display text-xl md:text-2xl text-primary mb-1 leading-snug">
+                {t("Mr. Manoj Khaitan", "श्री मनोज खैतान")}
               </h3>
+              <p className="font-display text-xl md:text-2xl text-primary mb-2 leading-snug">
+                {t("Mrs. Jyoti Khaitan", "श्रीमती ज्योति खैतान")}
+              </p>
               <p className="font-body text-base text-primary">
                 {t("Parents of the Bride", "दुल्हन के माता-पिता")}
               </p>
@@ -198,6 +208,34 @@ const FamilyGratitudeSection = () => {
                   Anant & Gauri
                 </p>
               </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Contact */}
+        <ScrollReveal delay={300}>
+          <div className="max-w-xl mx-auto mt-12 md:mt-16 text-center">
+            <p className="font-body text-sm tracking-[0.4em] uppercase text-primary mb-3">
+              {t("For Any Assistance", "किसी भी सहायता के लिए")}
+            </p>
+            <h3 className="font-display text-2xl md:text-3xl text-primary mb-6">
+              {t("Contact Us", "संपर्क करें")}
+            </h3>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="tel:+9779811141433"
+                className="inline-flex items-center gap-2 px-5 py-3 border-2 border-primary/40 rounded-sm bg-card/50 text-primary font-body hover:bg-primary/10 transition-colors"
+              >
+                <Phone size={18} />
+                +977 9811141433
+              </a>
+              <a
+                href="tel:+9779803037133"
+                className="inline-flex items-center gap-2 px-5 py-3 border-2 border-primary/40 rounded-sm bg-card/50 text-primary font-body hover:bg-primary/10 transition-colors"
+              >
+                <Phone size={18} />
+                +977 9803037133
+              </a>
             </div>
           </div>
         </ScrollReveal>

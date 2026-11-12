@@ -9,7 +9,7 @@ import mandalaSpin from "@/assets/lottie/mandala-spin.json";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const BARAT_DATE = new Date("2026-11-26T07:15:00").getTime();
+const BARAT_DATE = new Date("2026-11-26T19:15:00").getTime();
 
 interface TimeLeft {
   days: number;
