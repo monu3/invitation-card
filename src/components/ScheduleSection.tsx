@@ -114,7 +114,7 @@ const ScheduleSection = () => {
 
   const day2Events = [
     { name: t("Haldi", "हल्दी"), time: "9:15 AM" },
-    { name: t("War Mala", "वर माला"), time: "6:15 PM" },
+    { name: t("Varmala", "वरमाला"), time: "6:15 PM" },
     { name: t("Fera", "फेरा"), time: "9:15 PM" },
   ];
 
