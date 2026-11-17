@@ -47,3 +47,15 @@ Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
   value: () => null,
 });
 
+// jsdom does not implement media playback. Simulate a browser that blocks
+// autoplay (the realistic mobile case) so components keep their fallback path.
+Object.defineProperty(HTMLMediaElement.prototype, "play", {
+  writable: true,
+  value: () => Promise.reject(new DOMException("Blocked", "NotAllowedError")),
+});
+
+Object.defineProperty(HTMLMediaElement.prototype, "pause", {
+  writable: true,
+  value: () => {},
+});
+
