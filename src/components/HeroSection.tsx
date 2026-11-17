@@ -1,5 +1,6 @@
 import ScrollReveal from "@/components/ScrollReveal";
-import curtainOpen from "@/assets/curtain-open.jpg";
+import ScrollDownButton from "@/components/ScrollDownButton";
+import curtainOpen from "@/assets/curtain-open.webp";
 import flora from "@/assets/flora.webp";
 import ganeshImg from "@/assets/ganesh.png";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
@@ -14,7 +15,7 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen-safe flex flex-col items-center justify-center overflow-hidden">
       {/* Animated background (petals + sparkles, video-like) */}
       <AnimatedVideoBackground className="z-20" />
 
@@ -71,7 +72,7 @@ const HeroSection = () => {
       {/* Decorative top ornament */}
       <div className="absolute top-0 left-0 right-0 h-px gold-line z-30" />
 
-      <div className="relative z-30 text-center max-w-2xl mx-auto w-full min-h-screen flex flex-col items-center justify-between pt-24 sm:pt-32 pb-10 px-4 gap-8">
+      <div className="relative z-30 text-center max-w-2xl mx-auto w-full min-h-screen-safe flex flex-col items-center justify-between pt-20 sm:pt-32 pb-6 sm:pb-10 px-4 gap-5 sm:gap-8">
         {/* Welcome message with Sanskrit mantra arc */}
         <div className="animate-fade-in opacity-0">
           <svg viewBox="0 0 400 72" className="w-64 sm:w-80 md:w-96 mx-auto text-primary">
@@ -148,8 +149,8 @@ const HeroSection = () => {
           </ScrollReveal>
         </div>
 
-        {/* Bottom section: Save the date + Scroll */}
-        <div className="flex flex-col items-center gap-4 pb-4">
+        {/* Bottom section: Save the date + scroll button */}
+        <div className="flex flex-col items-center gap-4 pb-2">
           {/* Save the date */}
           <ScrollReveal delay={1300}>
             <div className="rajasthani-border px-4 sm:px-6 py-3">
@@ -162,13 +163,11 @@ const HeroSection = () => {
             </div>
           </ScrollReveal>
 
-          {/* Scroll hint */}
-          <div>
-            <div className="scroll-triangle scroll-bounce mx-auto" />
-            <p className="font-body text-[9px] tracking-[0.3em] uppercase text-muted-foreground mt-2">
-              {t("Scroll", "नीचे स्क्रॉल करें")}
-            </p>
-          </div>
+          {/* Big, thumb-friendly scroll down button */}
+          <ScrollDownButton
+            targetId="schedule"
+            label={t("Scroll Down", "नीचे स्क्रॉल करें")}
+          />
         </div>
       </div>
     </section>

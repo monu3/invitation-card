@@ -20,13 +20,19 @@ const FamilyGratitudeSection = () => {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+    // Phones get a lighter burst: confetti animates its own canvas and is
+    // expensive while the page is also scrolling into view.
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const mainCount = isCoarse ? 45 : 70;
+    const sideCount = isCoarse ? 20 : 35;
+
     let fired = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting || fired) return;
         fired = true;
         confetti({
-          particleCount: 70,
+          particleCount: mainCount,
           spread: 100,
           startVelocity: 35,
           ticks: 180,
@@ -38,7 +44,7 @@ const FamilyGratitudeSection = () => {
         });
         setTimeout(() => {
           confetti({
-            particleCount: 35,
+            particleCount: sideCount,
             angle: 60,
             spread: 60,
             startVelocity: 30,
@@ -47,7 +53,7 @@ const FamilyGratitudeSection = () => {
             zIndex: 60,
           });
           confetti({
-            particleCount: 35,
+            particleCount: sideCount,
             angle: 120,
             spread: 60,
             startVelocity: 30,

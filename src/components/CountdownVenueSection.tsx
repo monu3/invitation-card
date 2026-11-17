@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ScrollReveal from "@/components/ScrollReveal";
 import { MapPin, Navigation } from "lucide-react";
-import venueImage from "@/assets/venue1.png";
+import venueImage from "@/assets/venue1.webp";
 import flora from "@/assets/flora.webp";
 import LazyLottie from "@/components/LazyLottie";
 import mandalaSpin from "@/assets/lottie/mandala-spin.json";
+import FloralMandala from "@/components/rajasthani/FloralMandala";
 import ElephantMotif from "@/components/rajasthani/ElephantMotif";
 import { useLanguage } from "@/hooks/useLanguage";
 
@@ -120,8 +121,18 @@ const CountdownVenueSection = () => {
         style={{ backgroundImage: `url(${flora})` }}
       />
 
-      {/* Decorative spinning mandala behind countdown */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] max-w-[90vw] max-h-[60vh] opacity-[0.18] pointer-events-none">
+      {/*
+        Lottie renders animated SVG nodes every frame and is one of the most
+        expensive decorations to scroll past on a phone. Mobile gets a static
+        SVG mandala that only rotates (compositor-only), tablets/desktop keep
+        the full Lottie animation.
+      */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] max-w-[90vw] max-h-[60vh] opacity-[0.18] pointer-events-none md:hidden">
+        <div className="mandala-spin-slow w-full h-full">
+          <FloralMandala size={420} color="hsl(11, 65%, 25%)" weight={1.1} className="w-full h-full" />
+        </div>
+      </div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] max-w-[90vw] max-h-[60vh] opacity-[0.18] pointer-events-none hidden md:block">
         <LazyLottie src={mandalaSpin} loop autoplay speed={0.8} />
       </div>
 
@@ -145,6 +156,7 @@ const CountdownVenueSection = () => {
               alt="Wedding venue"
               className="w-full h-[300px] md:h-[400px] object-cover"
               loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
@@ -156,7 +168,7 @@ const CountdownVenueSection = () => {
         </ScrollReveal>
 
         <ScrollReveal delay={350}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-card/60 backdrop-blur-sm border-2 border-primary/30 rounded-sm p-4 md:p-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-card/70 md:bg-card/60 md:backdrop-blur-sm border-2 border-primary/30 rounded-sm p-4 md:p-5">
             <div className="flex items-start gap-2 text-center md:text-left">
               <MapPin className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
               <div>

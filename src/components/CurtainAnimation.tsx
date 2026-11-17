@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
-import curtainClosed from "@/assets/curtain-closed.jpg";
+import curtainClosed from "@/assets/curtain-closed.webp";
 
 const CURTAIN_COLORS = [
   "#C41E3A",
@@ -13,18 +13,40 @@ const CURTAIN_COLORS = [
 
 const CurtainAnimation = ({ onComplete }: { onComplete?: () => void }) => {
   const [phase, setPhase] = useState<"closed" | "opening" | "open">("closed");
-  const OPEN_DURATION_MS = 2600;
   const firedRef = useRef(false);
+
+  // With reduced motion the CSS animation is instant, so don't keep the
+  // (scroll-locking) overlay mounted for 2.6s afterwards.
+  const [openDuration] = useState(() =>
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 2600
+  );
 
   useEffect(() => {
     if (phase === "opening") {
       const timer = setTimeout(() => {
         setPhase("open");
         onComplete?.();
-      }, OPEN_DURATION_MS);
+      }, openDuration);
       return () => clearTimeout(timer);
     }
-  }, [phase, onComplete, OPEN_DURATION_MS]);
+  }, [phase, onComplete, openDuration]);
+
+  // Lock background scrolling while the curtain is closed/opening, otherwise
+  // the invitation scrolls away behind the curtains.
+  useEffect(() => {
+    if (phase === "open") return;
+
+    const { body } = document;
+    const previousOverflow = body.style.overflow;
+    const previousOverscroll = body.style.overscrollBehavior;
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+
+    return () => {
+      body.style.overflow = previousOverflow;
+      body.style.overscrollBehavior = previousOverscroll;
+    };
+  }, [phase]);
 
   useEffect(() => {
     if (phase !== "open" || firedRef.current) return;
