@@ -1,5 +1,5 @@
 import ScrollReveal from "@/components/ScrollReveal";
-import menuFrame from "@/assets/menu-frame2.png";
+import menuFrame from "@/assets/menu-frame2.webp";
 import flora from "@/assets/flora.webp";
 import PeacockMotif from "@/components/rajasthani/PeacockMotif";
 import PaisleyPattern from "@/components/rajasthani/PaisleyPattern";
@@ -31,6 +31,8 @@ const ReceptionSection = () => {
               src={menuFrame}
               alt=""
               className="absolute inset-0 w-full h-full object-fill pointer-events-none"
+              loading="lazy"
+              decoding="async"
             />
 
             {/* Paisley decorations on frame */}

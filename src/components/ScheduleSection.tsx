@@ -1,8 +1,8 @@
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion } from "framer-motion";
 import { Calendar, Clock } from "lucide-react";
-import preweddingImage from "@/assets/prewedding.png";
-import feraImage from "@/assets/fera.png";
+import preweddingImage from "@/assets/prewedding.webp";
+import feraImage from "@/assets/fera.webp";
 import PaisleyPattern from "@/components/rajasthani/PaisleyPattern";
 import LazyLottie from "@/components/LazyLottie";
 import mandalaSpin from "@/assets/lottie/mandala-spin.json";
@@ -52,7 +52,7 @@ const DayCard = ({ day, date, label, events, bgImage, delay, light = false }: Da
       <motion.div
         whileHover={{ y: -8 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className={`group relative overflow-hidden backdrop-blur-sm border-2 hover:border-primary/60 rounded-sm transition-colors duration-500 hover:shadow-lg ${light ? "border-ivory/30" : "border-primary/30 bg-card/60"}`}
+        className={`group relative overflow-hidden md:backdrop-blur-sm border-2 hover:border-primary/60 rounded-sm transition-colors duration-500 hover:shadow-lg ${light ? "border-ivory/30" : "border-primary/30 bg-card/60"}`}
       >
         {/* Background image with opacity */}
         <div
@@ -119,7 +119,7 @@ const ScheduleSection = () => {
   ];
 
   return (
-    <section className="relative py-8 md:py-32 px-6 bg-background/80 overflow-hidden">
+    <section id="schedule" className="relative scroll-mt-16 py-8 md:py-32 px-6 bg-background/80 overflow-hidden">
       {/* Spinning mandala decorations */}
       <div className="absolute -top-16 -right-16 w-64 h-64 opacity-10 pointer-events-none hidden md:block">
         <LazyLottie src={mandalaSpin} loop autoplay speed={0.5} />
