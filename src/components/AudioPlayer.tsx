@@ -15,17 +15,20 @@ const AudioPlayer = () => {
         });
         setIsPlaying(true);
         setHasInteracted(true);
-        document.removeEventListener("click", handleFirstInteraction);
-        document.removeEventListener("scroll", handleFirstInteraction);
+        document.removeEventListener("pointerdown", handleFirstInteraction);
+        document.removeEventListener("keydown", handleFirstInteraction);
       }
     };
 
-    document.addEventListener("click", handleFirstInteraction);
-    document.addEventListener("scroll", handleFirstInteraction);
+    // Deliberately NOT listening to `scroll`: a global scroll listener that is
+    // never removed (when the visitor never interacts) adds work to every
+    // scroll frame on mobile.
+    document.addEventListener("pointerdown", handleFirstInteraction);
+    document.addEventListener("keydown", handleFirstInteraction);
 
     return () => {
-      document.removeEventListener("click", handleFirstInteraction);
-      document.removeEventListener("scroll", handleFirstInteraction);
+      document.removeEventListener("pointerdown", handleFirstInteraction);
+      document.removeEventListener("keydown", handleFirstInteraction);
     };
   }, [hasInteracted]);
 

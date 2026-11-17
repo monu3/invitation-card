@@ -68,11 +68,16 @@
   }
   html {
     scroll-behavior: smooth;
+    /* Mobile Safari: stop the address bar from resizing text / zooming layout */
+    -webkit-text-size-adjust: 100%;
   }
   body {
     @apply bg-background text-foreground;
     font-family: "Cormorant Garamond", serif;
     -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
+    /* Prevents rubber-band repaint flashes on iOS at the page edges */
+    overscroll-behavior-y: none;
   }
   h1,
   h2,
@@ -274,21 +279,40 @@
 
   /* Gold glow pulse for names/text */
   .glow-pulse {
+    text-shadow:
+      0 0 10px rgba(212, 175, 55, 0.25),
+      0 0 20px rgba(212, 175, 55, 0.1);
     animation: glow-pulse 3.5s ease-in-out infinite;
   }
 }
 
 @layer utilities {
+  /* Stable mobile viewport height: 100vh jumps when the URL bar hides/shows,
+     which reads as "sticky / jumpy" scrolling. svh never changes mid-scroll. */
+  .min-h-screen-safe {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* Full page backdrop. A fixed, promoted layer only has to be composited,
+     unlike `background-attachment: fixed` which repaints the whole page. */
+  .page-backdrop {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    background-color: hsl(var(--ivory));
+  }
+
   .scroll-reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translate3d(0, 40px, 0);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .scroll-reveal.revealed {
     opacity: 1;
-    transform: translateY(0);
+    /* `none` (not translate3d(0,0,0)) keeps text crisp after the animation */
+    transform: none;
   }
   .parallax-slow {
     will-change: transform;
@@ -331,6 +355,58 @@
 
   .scroll-bounce {
     animation: scroll-bounce 1.6s ease-in-out infinite;
+  }
+
+  .scroll-nudge {
+    animation: scroll-nudge 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  }
+
+  .scroll-down-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll performance layer
+   While the finger is scrolling, decorative animations are paused so the
+   compositor can dedicate every frame to moving the page. They resume ~140ms
+   after the scroll ends (class toggled by ScrollPerformanceProvider).
+   --------------------------------------------------------------------------- */
+html.is-scrolling .sparkle-twinkle,
+html.is-scrolling .sparkle-float,
+html.is-scrolling .scroll-bounce,
+html.is-scrolling .scroll-nudge,
+html.is-scrolling .glow-pulse,
+html.is-scrolling .mandala-spin-slow,
+html.is-scrolling .animate-pulse {
+  animation-play-state: paused;
+}
+
+/* backdrop-filter is one of the most expensive things you can scroll behind on
+   a phone: it re-blurs the moving content on every frame. */
+@media (max-width: 767px), (pointer: coarse) {
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -380,6 +456,16 @@
   }
 }
 
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}
+
 @keyframes sparkle-twinkle {
   0%,
   100% {
@@ -411,16 +497,16 @@
   }
 }
 
+/* Gold glow for names/text.
+   Previously this animated `text-shadow`, which forces a text repaint on every
+   animation frame. A static shadow + animated opacity looks the same and is
+   handled entirely by the compositor. */
 @keyframes glow-pulse {
   0%,
   100% {
-    text-shadow:
-      0 0 10px rgba(212, 175, 55, 0.25),
-      0 0 20px rgba(212, 175, 55, 0.1);
+    opacity: 0.82;
   }
   50% {
-    text-shadow:
-      0 0 18px rgba(212, 175, 55, 0.55),
-      0 0 36px rgba(212, 175, 55, 0.25);
+    opacity: 1;
   }
 }
