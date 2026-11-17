@@ -66,9 +66,13 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: "Cormorant Garamond", serif;
+    -webkit-overflow-scrolling: touch;
   }
   h1,
   h2,
@@ -319,9 +323,9 @@
   .scroll-triangle {
     width: 0;
     height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 10px solid rgb(92, 32, 24);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 13px solid rgb(92, 32, 24);
     opacity: 0.7;
   }
 
