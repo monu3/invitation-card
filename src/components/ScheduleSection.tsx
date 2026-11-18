@@ -108,14 +108,14 @@ const ScheduleSection = () => {
   const { t } = useLanguage();
 
   const day1Events = [
-    { name: t("Mayara (Bhaat)", "मायरा (भाट)"), time: "1:15 PM" },
-    { name: t("Tilak + Sangeet", "तिलक + संगीत"), time: "6:15 PM" },
+    // { name: t("Mayara (Bhaat)", "मायरा (भाट)"), time: "1:15 PM" },
+    { name: t("Tilak + Sangeet", "तिलक + संगीत"), time: "5:30 PM" },
   ];
 
   const day2Events = [
     { name: t("Haldi", "हल्दी"), time: "9:15 AM" },
     { name: t("Varmala", "वरमाला"), time: "6:15 PM" },
-    { name: t("Fera", "फेरा"), time: "9:15 PM" },
+    { name: t("Fera", "फेरा"), time: "7:30 PM" },
   ];
 
   return (

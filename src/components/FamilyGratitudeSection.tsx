@@ -128,7 +128,7 @@ const FamilyGratitudeSection = () => {
                 {t("Mrs. Kusum Devi Nayabaniya", "श्रीमती कुसुम देवी नयाबानिया")}
               </p>
               <h3 className="font-display text-lg md:text-xl text-primary leading-snug">
-                {t("Along with all Nayabaniya Family Members", "नयाबानिया समस्त परिवार सहित")}
+                {t("Along with all Nayabaniya Family Members", "नायाबनिया परिवार के सभी सदस्यों के साथ")}
               </h3>
             </div>
           </ScrollReveal>
@@ -152,8 +152,11 @@ const FamilyGratitudeSection = () => {
                 <PaisleyPattern size={20} color="hsl(11, 65%, 25%)" />
               </div>
 
-              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+              <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-1">
                 {t("Bride's Family", "दुल्हन का परिवार")}
+              </p>
+              <p className="font-body text-base text-primary mb-4">
+                {t("Parents of the Bride", "दुल्हन के माता-पिता")}
               </p>
               <h3 className="font-display text-xl md:text-2xl text-primary mb-1 leading-snug">
                 {t("Mr. Manoj Khaitan", "श्री मनोज खैतान")}
@@ -161,9 +164,9 @@ const FamilyGratitudeSection = () => {
               <p className="font-display text-xl md:text-2xl text-primary mb-2 leading-snug">
                 {t("Mrs. Jyoti Khaitan", "श्रीमती ज्योति खैतान")}
               </p>
-              <p className="font-body text-base text-primary">
-                {t("Parents of the Bride", "दुल्हन के माता-पिता")}
-              </p>
+              <h3 className="font-display text-lg md:text-xl text-primary leading-snug">
+                {t("Along with all Khaitan Family Members", "खैतान परिवार के सभी सदस्यों के साथ")}
+              </h3>
             </div>
           </ScrollReveal>
         </div>
@@ -229,19 +232,19 @@ const FamilyGratitudeSection = () => {
             </h3>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="tel:+9779811141433"
+                href="tel:+9779802919070"
                 className="inline-flex items-center gap-2 px-5 py-3 border-2 border-primary/40 rounded-sm bg-card/50 text-primary font-body hover:bg-primary/10 transition-colors"
               >
                 <Phone size={18} />
-                +977 9811141433
+                +977 9802919070
               </a>
-              <a
+              {/* <a
                 href="tel:+9779803037133"
                 className="inline-flex items-center gap-2 px-5 py-3 border-2 border-primary/40 rounded-sm bg-card/50 text-primary font-body hover:bg-primary/10 transition-colors"
               >
                 <Phone size={18} />
                 +977 9803037133
-              </a>
+              </a> */}
             </div>
           </div>
         </ScrollReveal>
